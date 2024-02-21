@@ -2,7 +2,7 @@
 title: "WSL2のUbuntuにZenn CLIを導入"
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [WSL2,Ubuntu,Zenn CLI,nvm,npm,node]
+topics: [Ubuntu,Zenn CLI,nvm,npm,node]
 published: false
 ---
 # 環境
@@ -280,3 +280,6 @@ $ ls articles/
 $ ls
 README.md  articles  books  node_modules  package-lock.json  package.json  test1  zenn-public
 ```
+
+# 感想
+一旦ローカルでZenn記事を編集できる環境は整いました。
