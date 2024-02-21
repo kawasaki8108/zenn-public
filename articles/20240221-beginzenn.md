@@ -3,7 +3,7 @@ title: "WSL2のUbuntuにZenn CLIを導入"
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Ubuntu,Zenn CLI,nvm,npm,node]
-published: false
+published: true
 ---
 # 環境
 WindowsPCでLinux環境用意していろいろしてメモもしたいので、いっそこの環境上でZenn CLIを入れます。
@@ -202,7 +202,7 @@ created: articles/a0a4d33fb2a43e.md
 >[Punycode - Node.js](https://runebook.dev/ja/docs/node/punycode)<br>
 >Node.js にバンドルされている Punycode モジュールのバージョンは非推奨になります。 Node.js の将来のメジャー バージョンでは、このモジュールは削除される予定です。現在 punycode モジュールに依存しているユーザーは、代わりにユーザーランドが提供する Punycode.js モジュールの使用に切り替える必要があります。Punycode ベースの URL エンコードについては、 url.domainToASCII 、またはより一般的には WHATWG URL API を参照してください。
 
-でもとりあえず、指示通りのコマンド叩いておきました↓
+でもとりあえず、指示通りのコマンド叩いておきました↓。
 ```bash
 $ node --trace-deprecation ...
 node:internal/modules/cjs/loader:1152
@@ -222,7 +222,7 @@ Node.js v21.6.2
 $ node -v
 v21.6.2
 ```
-こちらの記事からヒントを得て、LTSのバージョンを確認することにしました
+こちらの記事からヒントを得て、LTSのバージョンを確認することにしました。
 >[ERROR：[DEP0040] DeprecationWarning: The punycode module is deprecated.の解決法](https://tomatosauce.jp/punycode-deprecated/)
 
 ```bash
@@ -293,7 +293,7 @@ $ npx zenn preview
 # 結果
 ブラウザのアドレスバーで`http://localhost:8000`をたたくと以下の通り表示できました。<br>
 ![localhost:8000ブラウザ表示](/images/20240221-beginzenn/zenn031.png)<br>
-また、`git push`した後は連携しているGitHub側で、ブラウザ上で編集できます。アドレスバーでgithub.comをgithub.devに変え、VScode拡張機能Zennを<br>
+また、`git push`した後は連携しているGitHub側で、ブラウザ上で編集できます。アドレスバーでgithub.comをgithub.devに変え、VScode拡張機能「Zenn Preview for github.dev」をインストール。<br>
 （参考：[Zennのコンテンツをgithub.devで編集する](https://zenn.dev/zenn/articles/usage-github-dev)）<br>
 ![github.dev1](/images/20240221-beginzenn/zenn033.png)<br>
 上図の右上の「Z」マーク押下して以下の通り表示できます。<br>
@@ -302,5 +302,6 @@ $ npx zenn preview
 
 # 感想
 * とりあえず、ローカルでZenn記事を編集し、GitHubへpushすることでZennと連携できる環境は整いました。
+* 記事編集は、まずはローカルで編集し、都度localhost:8000か拡張機能などでプレビューで確認し、`git push`後にgithub.devで最終確認・都度編集・commitすることがいいかなと思いました。そして問題なければ`published: true`にする形。
 * 実は`git push`したときにも、認証方法がらみの問題でpushできずつまづいてましたので、別途でUpしようと思います。
 
