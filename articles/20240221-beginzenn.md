@@ -6,7 +6,7 @@ topics: [Ubuntu,Zenn CLI,nvm,npm,node]
 published: false
 ---
 # 環境
-WindowsPCでLinux環境用意していろいろしてメモもしたいので、いっそこの環境上でZenn CLIを入れます
+WindowsPCでLinux環境用意していろいろしてメモもしたいので、いっそこの環境上でZenn CLIを入れます。
 * 仮想環境：WSL2
 * WSLのディストリビューション：Ubuntu-22.04
 * ホストのOS：Windows
@@ -15,14 +15,17 @@ WindowsPCでLinux環境用意していろいろしてメモもしたいので、
   * OS ビルド：22621.3155
   * プロセッサ：AMD Ryzen 5 7530U with Radeon Graphics 2.00 GHz
   * RAM：16GB
+
 # 背景
 * ローカルPCのAnsibleを使ってAWSのEC2に各種ソフトを導入したい（最終目標）
 * Windowsは無理なのでLinux環境がいる（済）
 * WSL、Ubuntu入れるまでつまづいた（済）
 * 先は長そうなのでいろいろメモしておきたい、せっかくなのでGithub連携してZennを使おう（GitHubリポジトリ連携済み）
 * WSLにZenn CLIいれようとするけど、つまづいてる、それをメモしておこ（今ココ）
+
 # その他の前提
-* GitHub側のWSL2のセットアップ完了済
+* GitHub側にWSL2用のリポジトリを用意し、ローカル(WSL2)との連携済
+
 # 参考資料
 * 基本のやり方（公式）
   * [GitHubリポジトリでZennのコンテンツを管理する](https://zenn.dev/zenn/articles/connect-to-github)
@@ -35,8 +38,9 @@ WindowsPCでLinux環境用意していろいろしてメモもしたいので、
 * 後で気づいた正攻法ぽいやり方
   * [Setup Zenn CLI on Ubuntu 22.04](https://zenn.dev/superdaigo/articles/setup-zenn-cli-environment-f92892a229bd90)
   * [WSL2 (Ubuntu20.04) に Zenn 執筆環境構築を構築してみた](https://zenn.dev/hrtkzi/articles/c1757e88f152ad)
-# 結論
-とりあえずnpmがいるのねてことで、何も考えず以下実行
+
+# 実施したこと
+とりあえずnpmがいるのねてことで、何も考えず以下実行。
 ```
 $ sudo apt install npm
 ```
@@ -48,7 +52,7 @@ $ sudo apt install npm
 SyntaxError: Unexpected token '?'
 ```
 参考記事の通り、npmのバージョンが古すぎるためでした。メモできていないのですが、バージョン8系でした。。<br>
-一旦nodeやnpmを根こそぎ削除するところからやりました↓
+一旦nodeやnpmを根こそぎ削除するところからやりました↓。（もっといいやり方あるはず。。）
 ```bash
 sudo rm -rf /usr/bin/npm /usr/share/node* /usr/share/npm /usr/share/man/man1/node* /usr/share/man/man1/npm* /usr/include/node* /usr/include/npm
 ```
@@ -129,7 +133,7 @@ $ npm version
 $ which npm
 /home/kawasaki8108/.nvm/versions/node/v21.6.2/bin/npm
 ```
-Zennと連携したローカルリポジトリのディレクトリに入り、改めて公式のやり方でZenn CLIを入れていきました
+Zennと連携したローカルリポジトリのディレクトリに入り、改めて公式のやり方でZenn CLIを入れていきました。
 ```bash
 $ cd zenn-public/ #Zennと連携しているリポジトリのディレクトリへ移動
 $ npm init --yes #ここからやり直し
@@ -280,6 +284,23 @@ $ ls articles/
 $ ls
 README.md  articles  books  node_modules  package-lock.json  package.json  test1  zenn-public
 ```
+githubへpushしてブラウザで表示するところまでやってみます。
+```bash
+$ npx zenn preview
+👀 Preview: http://localhost:8000
+```
+
+# 結果
+ブラウザのアドレスバーで`http://localhost:8000`をたたくと以下の通り表示できました。<br>
+![localhost:8000ブラウザ表示](/images/20240221-beginzenn/zenn031.png)<br>
+また、`git push`した後は連携しているGitHub側で、ブラウザ上で編集できます。アドレスバーでgithub.comをgithub.devに変え、VScode拡張機能Zennを<br>
+（参考：[Zennのコンテンツをgithub.devで編集する](https://zenn.dev/zenn/articles/usage-github-dev)）<br>
+![github.dev1](/images/20240221-beginzenn/zenn033.png)<br>
+上図の右上の「Z」マーク押下して以下の通り表示できます。<br>
+![github.dev2](/images/20240221-beginzenn/zenn032.png)<br>
+
 
 # 感想
-一旦ローカルでZenn記事を編集できる環境は整いました。
+* とりあえず、ローカルでZenn記事を編集し、GitHubへpushすることでZennと連携できる環境は整いました。
+* 実は`git push`したときにも、認証方法がらみの問題でpushできずつまづいてましたので、別途でUpしようと思います。
+
