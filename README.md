@@ -1,2 +1,2 @@
-# zenn-public
-zenn用のリポジトリ
+# zenn用のリポジトリ
+
