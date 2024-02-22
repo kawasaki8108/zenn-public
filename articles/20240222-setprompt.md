@@ -3,7 +3,7 @@ title: "Ubuntuのプロンプトでgitのブランチ名を表示"
 emoji: "🌿"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Ubuntu,プロンプト,PS1,git,branch]
-published: false
+published: true
 ---
 # 背景
 * Windows 11上でWSL2-Ubuntu環境
@@ -136,10 +136,10 @@ fi
 - PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 + PS1='${debian_chroot:+($debian_chroot)}\[\033[01;36m\]\u@\h\[\033[00m\]:\[\033[42m\]\w\[\033[00m\]\$ '
 ```
-▼変更前<br>
-![変更前](/images/20240222-setprompt/prompt010.png)<br>
-▼変更後<br>
-![変更後](/images/20240222-setprompt/prompt011.png)<br>
+▼変更前
+![変更前](/images/20240222-setprompt/prompt010.png)
+▼変更後
+![変更後](/images/20240222-setprompt/prompt011.png)
 
 ## 小まとめ
 * `~/.bashrc`の`color_prompt`のifブロック内のPS1の設定を修正する
@@ -194,7 +194,7 @@ fi
 ![ブランチ名表示](/images/20240222-setprompt/prompt012.png)<br>
 
 が、`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`の中身がプロンプト表示の前段にターミナル表示されました。
-▼その時のキャプチャ（抜粋）<br>
+▼その時のキャプチャ（抜粋）
 ![エラー1](/images/20240222-setprompt/prompt022.png)
 ![エラー2](/images/20240222-setprompt/prompt021.png)
 
