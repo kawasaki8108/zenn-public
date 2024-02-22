@@ -137,8 +137,9 @@ fi
 + PS1='${debian_chroot:+($debian_chroot)}\[\033[01;36m\]\u@\h\[\033[00m\]:\[\033[42m\]\w\[\033[00m\]\$ '
 ```
 ▼変更前<br>
-
+![変更前](/images/20240222-setprompt/prompt010.png)<br>
 ▼変更後<br>
+![変更後](/images/20240222-setprompt/prompt011.png)<br>
 
 ## 小まとめ
 * `~/.bashrc`の`color_prompt`のifブロック内のPS1の設定を修正する
@@ -189,8 +190,13 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 ```
-上記の設定で、一旦`exit`後、再度Ubuntuを起動するとプロンプト自体は下のキャプチャの通り想定通りだったのですが、`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`の中身がプロンプト表示の前段にターミナル表示されました。
-▼その時のキャプチャ
+上記の設定で、一旦`exit`後、再度Ubuntuを起動するとプロンプト自体は下のキャプチャの通り想定通りできました。
+![ブランチ名表示](/images/20240222-setprompt/prompt012.png)<br>
+
+が、`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`の中身がプロンプト表示の前段にターミナル表示されました。
+▼その時のキャプチャ（抜粋）<br>
+![エラー1](/images/20240222-setprompt/prompt022.png)
+![エラー2](/images/20240222-setprompt/prompt021.png)
 
 結局`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`の記述は削除しても問題なく想定通りのプロンプト表示、また、補完もしてくれました。<br>
 おそらく、`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`がすでに稼働していた？似た設定ファイルがないか基本に立ち返り探しました。
