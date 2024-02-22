@@ -308,7 +308,7 @@ $ npx zenn preview
 ---
 # 後日追記
 ## 実行するnodeのバージョン
-後日、新たに記事作成しようとするとまた、punycodeモジュールの件で警告されました。先日の`nvm use 20.11.1`はそのログインのタイミング
+後日、新たに記事作成しようとするとまた、punycodeモジュールの件で警告されました。先日の`nvm use 20.11.1`はそのログインのタイミングだけみたいです。
 ```bash
 $ npx zenn new:article --slug 20240222-setprompt
 (node:4578) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
