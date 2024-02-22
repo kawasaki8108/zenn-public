@@ -305,3 +305,45 @@ $ npx zenn preview
 * 記事編集は、まずはローカルで編集し、都度localhost:8000か拡張機能などでプレビューで確認し、`git push`後にgithub.devで最終確認・都度編集・commitすることがいいかなと思いました。そして問題なければ`published: true`にする形。
 * 実は`git push`したときにも、認証方法がらみの問題でpushできずつまづいてましたので、別途でUpしようと思います。
 
+---
+# 後日追記
+## 実行するnodeのバージョン
+後日、新たに記事作成しようとするとまた、punycodeモジュールの件で警告されました。先日の`nvm use 20.11.1`はそのログインのタイミング
+```bash
+$ npx zenn new:article --slug 20240222-setprompt
+(node:4578) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+created: articles/20240222-setprompt.md
+$ node -v #え？と思って確認
+v21.6.2
+$ nvm ls #改めてdefault確認
+       v20.11.1
+->      v21.6.2
+         system
+default -> stable (-> v21.6.2)
+iojs -> N/A (default)
+unstable -> N/A (default)
+node -> stable (-> v21.6.2) (default)
+stable -> 21.6 (-> v21.6.2) (default)
+～～～～
+```
+defaultで使用するバージョンを設定しました。
+```bash
+$ nvm alias default v20.11.1
+default -> v20.11.1
+$ exit #再起動のためいったん抜ける
+logout
+#Ubuntuを起動
+$ nvm ls
+->     v20.11.1 #defaultが変わったことを確認できました
+        v21.6.2
+         system
+default -> v20.11.1
+iojs -> N/A (default)
+unstable -> N/A (default)
+node -> stable (-> v21.6.2) (default)
+stable -> 21.6 (-> v21.6.2) (default)
+$ npx zenn new:article
+created: articles/922fdd843602c6.md #大丈夫そう・・。
+```
+以上
