@@ -1,9 +1,9 @@
 ---
-title: "GitHubのtokenを使った認証"
+title: "GitHubのtoken(classic)を使った認証"
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [GitHub,Windows]
-published: false
+published: true
 ---
 # 背景
 * PCはWindows 11（GitBashを使って連携するのが普段使い）
@@ -32,7 +32,7 @@ published: false
    remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
    fatal: unable to access 'https://github.com/ユーザー名/リポジトリ名.git/'
    ```
-
+調べると、トークンによる認証を求められているらしく、その設定をしていきます
 # トークンの認証を設定する
 上記のエラーメッセージで案内されているURL―[GitHubの公式](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls)によると、パスワードを求められたらトークンを入力せよとのことでした。
 > コマンドラインで HTTPS URL を使用してリモート リポジトリに 、、git clone、git fetchまたはgit pullを接続すると、Git は GitHub のユーザー名とパスワードを要求します。git pushGit でパスワードの入力を求められたら、個人のアクセス トークンを入力します。
@@ -79,5 +79,6 @@ https://qiita.com/jun_aws/items/35599f54633582ae2086
 * 今回のトークンはclassicにしましたが、「Fine-grained personal access tokens」の方がセキュアなのでbeta版ですがこちらを使った方がいいかと思います。
 * Fine-grained tokenも実際試したのですが、上記の手順でうまく行かなかったので、permissionsが適切でなかったのか、勘違いしているだけなのか、また落ち着いて試してみます。
 * Fine-grained tokenを試した時のPermissionsと成功されている参考記事を下に載せます。
-  ![githubtoken](/images/20240223-githubtoken/zenn015.png)
-   https://zenn.dev/b0b/articles/fine-grained-pat-usageb
+  ![githubtoken](/images/20240223-githubtoken/githubtoken.png)
+
+https://zenn.dev/b0b/articles/fine-grained-pat-usageb
