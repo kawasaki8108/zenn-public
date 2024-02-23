@@ -129,7 +129,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 ```
-* 今回の目的的にはいらなそうなので、実際に.bashrcをいじってみて挙動確認してみます。
+* 今回の目的的には「.bash_profile」なくても大丈夫そうな気がするので、実際に.bashrcをいじってみて挙動確認してみます。
 
 ▼`if [ "$color_prompt" = yes ]; then`の`PS1=`のところ
 ```diff bash:.bashrcの変更前後
@@ -200,7 +200,7 @@ fi
 
 結局`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`の記述は削除しても問題なく想定通りのプロンプト表示、また、補完もしてくれました。<br>
 おそらく、`source ~/.git-completion.bash`と`source ~/.git-prompt.sh`がすでに稼働していた？似た設定ファイルがないか基本に立ち返り探しました。
-参考記事）[WSL に標準でインストールされている git においてブランチ名を表示する方法]
+参考記事）[WSL に標準でインストールされている git においてブランチ名を表示する方法](https://qiita.com/hiroki-harada/items/cc9ecdd2f704e111d57f)
 
 まず、最初に読み込まれるところから↓。
 ```bash:/etc/profile
