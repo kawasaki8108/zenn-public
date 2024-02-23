@@ -32,3 +32,5 @@ published: false
    fatal: unable to access 'https://github.com/ユーザー名/リポジトリ名.git/'
    ```
 
+# トークンの認証を設定する
+
