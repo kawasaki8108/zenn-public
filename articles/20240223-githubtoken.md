@@ -14,7 +14,7 @@ published: false
 1. zennと連携するためのリポジトリをGitHubに作成
 2. Ubuntuのユーザーホームディレクトリに`git clone`
 3. テストで`git push`（addやcommitは割愛）
-   ![git1](images/20240223-githubtoken/zenn015.png)
+   ![git1](/images/20240223-githubtoken/zenn015.png)
 4. `user.email`と`user.name`を設定
 5. 再度`git push`
 6. 以下の通り求められるので、usernameとGitHubのパスワードを入力
