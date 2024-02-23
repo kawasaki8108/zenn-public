@@ -10,7 +10,7 @@ published: false
 * UbuntuのgitからもGitHub連携することにしました。
 * 「[WSL2のUbuntuにZenn CLIを導入](https://zenn.dev/kawasaki8108/articles/20240221-beginzenn)」で`git push`まで難儀したのでそのメモを残します。特にコントロールパネルに設定するところ。
 # 問題に遭遇するまでの経緯
-要約すると、最初はIDとPassだけで行けたのに次やったら
+要約すると、最初はIDとPassだけでできたのに次pushしたらエラー起きたということです。
 1. zennと連携するためのリポジトリをGitHubに作成
 2. Ubuntuのユーザーホームディレクトリに`git clone`
 3. テストで`git push`（addやcommitは割愛）
