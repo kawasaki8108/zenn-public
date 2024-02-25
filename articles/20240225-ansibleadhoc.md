@@ -3,7 +3,7 @@ title: "WSL2-UbuntuのAnsibleからEC2に接続テスト"
 emoji: "👏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [Ansible,WSL,Ubuntu,AWS,EC2]
-published: false
+published: true
 ---
 # 背景
 * Windows 11
@@ -45,8 +45,10 @@ Python 3.7.16
 ```
 # 参考
 * アドホックコマンドのやり方
+
 https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
 * ホストへの接続時のオプション（`--extra-vars "～～～～"`）
+
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#intro-inventory
 https://www.youtube.com/watch?v=LKSWE_endX8
 https://docs.ansible.com/ansible/2.9/user_guide/modules.html#working-with-modules
