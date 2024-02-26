@@ -14,15 +14,21 @@ published: true
 * ローカルUbuntuのAnsibleからアドホックコマンドでEC2へコマンドをなげられるか確認する
 * 最終的にはplaybookによりいろいろ実行したいですが、今回は一旦ここまで
 # 結論
-今回は単純なおちなので、結論だけメモします。本題はplaybookですので。
-以下のコマンドで目的達成しました。
+今回は単純ですので、結論だけメモします。本題はplaybookですので。
+### 1. `/etc/ansible/hosts`にホスト名（EC2のパブリックIpv4）を追記して保存
+どこに記載してもいいですが、自分の場合は、最下部に（例）`35.78.170.81`と追記しました。
+### 2. アドホックコマンド実行
+3つ試してみて、意図した返答だったので問題なく接続・実行できたことが確認できました。
+1つ目：pingによる疎通確認
+2つ目、3つ目：コマンド実行
+秘密鍵の置き場所がホストOS（Cドライブ）側なので、`/mnt/c/`からのディレクトリ指定しています。
 ```bash
-$ sudo ansible 35.78.170.81 -m ping -u ec2-user --private-key=/mnt/c/Users/ユーザー名/キーペア名.pem
-[WARNING]: Platform linux on host 35.78.170.81 is using the discovered Python interpreter at
+$ sudo ansible EC2側のパブリックIP -m ping -u ec2-user --private-key=/mnt/c/Users/ユーザー名/キーペア名.pem
+[WARNING]: Platform linux on host EC2側のパブリックIP is using the discovered Python interpreter at
 /usr/bin/python3.7, but future installation of another Python interpreter could change the   
 meaning of that path. See https://docs.ansible.com/ansible-
 core/2.15/reference_appendices/interpreter_discovery.html for more information.
-35.78.170.81 | SUCCESS => {
+EC2側のパブリックIP | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python3.7"
     },
@@ -38,7 +44,7 @@ EC2側のパブリックIP | CHANGED | rc=0 >>
 test
 
 #`python3 --version`コマンドを投げるとverが返ってきます。
-$ sudo ansible 35.78.170.81 -a 'python3 --version' -u ec2-user --key-file=/mnt/c/Users/ユーザー名/キーペア名.pem
+$ sudo ansible EC2側のパブリックIP -a 'python3 --version' -u ec2-user --key-file=/mnt/c/Users/ユーザー名/キーペア名.pem
 （中略）
 EC2側のパブリックIP | CHANGED | rc=0 >>
 Python 3.7.16
