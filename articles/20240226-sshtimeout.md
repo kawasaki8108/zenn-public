@@ -3,7 +3,7 @@ title: "EC2へのssh接続がすぐ切れる問題解消"
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [GtiBash,ssh,EC2,]
-published: false
+published: true
 ---
 # 背景
 接続元：WindowsPCのターミナル（GitBashを使用）
@@ -67,7 +67,7 @@ sshd：ssh 用のデーモン・プログラムのこと
 以上で設定完了です。
 
 # 感想
-* この設定のおかげで再接続する手間が省けました
+* この設定のおかげで再接続する手間が省けました。
 * WSL2（Ubuntu）からもEC2に接続することがあるのですが、こちらの接続も切れなくなりました。
   なお、WSL2からのEC2接続時はWindowsのCドライブ > ユーザーホームディレクトリにあるキーペアを指定して接続しています。
 
