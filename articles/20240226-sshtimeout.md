@@ -2,7 +2,7 @@
 title: "EC2へのssh接続がすぐ切れる問題解消"
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [GtiBash,ssh,EC2,]
+topics: [GitBash,ssh,EC2,]
 published: true
 ---
 # 背景
