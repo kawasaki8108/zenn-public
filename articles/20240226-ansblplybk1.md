@@ -3,22 +3,22 @@ title: "WSL2からEC2にansible-playbookで小規模task実行"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [WSL,Ubuntu,EC2,Ansible,playbook]
-published: false
+published: true
 ---
 # 目的
 以下の構成でAnsibleのplaybookにより、簡単なTask実行テストをする
-コントロールノード：ローカルPC内のWSL2-Ubuntu
-管理対象ノード：EC2（Amazon Linux2）
+* コントロールノード：ローカルPC内のWSL2-Ubuntu
+* 管理対象ノード：EC2（Amazon Linux2）
 # 前提
-AnsibleはCドライブに格納しているキーペアの秘密鍵を使って接続
-[アドホックによる接続は完了済み](https://zenn.dev/kawasaki8108/articles/20240225-ansibleadhoc)
+* AnsibleはCドライブに格納しているキーペアの秘密鍵を使って接続
+* [アドホックによる接続は完了済み](https://zenn.dev/kawasaki8108/articles/20240225-ansibleadhoc)
 # 参考記事
-[Ansible入門講座#2 - Playbookを書く](https://www.youtube.com/watch?v=dS0rT9uSSS4&list=PL_RwLDGrI9OukEWiXyLWKxy-ccuBReL-o&index=2)
-[公式：Playbook の概要](https://docs.ansible.com/ansible/2.9_ja/user_guide/playbooks_intro.html#playbooks-intro)
-[公式：Connecting to hosts: behavioral inventory parameters](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#intro-inventory)
+* [Ansible入門講座#2 - Playbookを書く](https://www.youtube.com/watch?v=dS0rT9uSSS4&list=PL_RwLDGrI9OukEWiXyLWKxy-ccuBReL-o&index=2)
+* [公式：Playbook の概要](https://docs.ansible.com/ansible/2.9_ja/user_guide/playbooks_intro.html#playbooks-intro)
+* [公式：Connecting to hosts: behavioral inventory parameters](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#intro-inventory)
 
 # 実施内容
-実務で使用する場合、プロジェクトや実行環境（productやstage等）、によってフォルダ構成は考慮すると思います
+実務で使用する場合、プロジェクトや実行環境（productやstage等）、によってフォルダ構成は考慮する必要あると思います。
 今回はテストのため、とりあえずansible-playbookのフォルダ下にEC2側で処理実行されていることが小規模でわかる設定ファイルで試します。
 ### 1.playbook作成
 ```bash
@@ -69,13 +69,16 @@ $ sudo ansible-playbook site.yml
 
 PLAY [52.196.13.185] *************************************************************************************************************************************************************************
 
-TASK [Gathering Facts] ***********************************************************************************************************************************************************************[WARNING]: Platform linux on host 52.196.13.185 is using the discovered Python interpreter at /usr/bin/python3.7, but future installation of another Python interpreter could change the      
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************
+[WARNING]: Platform linux on host 52.196.13.185 is using the discovered Python interpreter at /usr/bin/python3.7, but future installation of another Python interpreter could change the      
 meaning of that path. See https://docs.ansible.com/ansible-core/2.15/reference_appendices/interpreter_discovery.html for more information.
 ok: [52.196.13.185]
 
-TASK [Make some folder] **********************************************************************************************************************************************************************ok: [52.196.13.185]
+TASK [Make some folder] **********************************************************************************************************************************************************************
+ok: [52.196.13.185]
 
-PLAY RECAP ***********************************************************************************************************************************************************************************52.196.13.185              : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP ***********************************************************************************************************************************************************************************
+52.196.13.185              : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 失敗した経緯は以下に記載します。
@@ -116,8 +119,8 @@ fatal: [52.196.13.185]: FAILED! => {"changed": false, "msg": "value of state mus
 PLAY RECAP ***********************************************************************************************************************************************************************************
 52.196.13.185              : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
 ```
-`fatal: [52.196.13.185]: FAILED! =>`のところで`got directry`と言っているので、タイポしています。正しいスペルは上記の通りですが、ここでは誤記していました。
-正しいスペルに直すと成功のところで示す通りになります。
+`fatal: [52.196.13.185]: FAILED! =>`のところで`got directry`と言われて`failed=1`となっているので、タイポしています。正しいスペルは上記の通りですが、ここでは誤記していました。
+正しいスペルに直すと前述の成功結果のところで示す通りになります。
 :::
 
 EC2にSSHログインし、フォルダ生成されたことを確認します。
@@ -131,6 +134,6 @@ drwxrwxr-x 2 ec2-user ec2-user   6 Feb 26 10:46 test20240226
 以上でplaybookによるテスト完了です。問題なく動いているみたいです。
 
 # 感想
-* 次からタスクを少しずつ増やしたり実用的なモジュール使ったりしていこうと思います。
+* 次からタスクを少しずつ増やしたり実用的なモジュール使ったりしていこうと思います。ミドルウェア（nginxやunicorn）なども入れていきたいので。
 * この検証中、EC2へのSSH接続がよく切れるので、すぐ切れないように設定できたのが副産物です。（⇒詳細[こちら](https://zenn.dev/kawasaki8108/articles/20240226-sshtimeout)）
 
