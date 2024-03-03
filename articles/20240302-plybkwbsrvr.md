@@ -3,7 +3,7 @@ title: "ローカルWSL2のAnsible-playbookでEC2にwebサーバーを導入"
 emoji: "😸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [WSL,Ansible,playbook,Nginx,EC2]
-published: false
+published: true
 ---
 # 前提
 * コントロールノード：Windows11PC-WSL2-Ubuntu22.04LTSにAnsibleインストール済み
@@ -201,7 +201,7 @@ PLAY RECAP *********************************************************************
 
 ▼nginxの起動確認
 `$ curl http://127.0.0.1`(EC2側)でwelcomページの内容が返ってきましたので、成功です。
-```html :http://127.0.0.1
+```html :curl http://127.0.0.1
 <!DOCTYPE html>
 <html>
 <head>
@@ -228,7 +228,7 @@ Commercial support is available at
 </html>
 ```
 
-![plybkwbsrvr](/images/20240302-plybkwbsrvr)
+![plybkwbsrvr](/images/20240302-plybkwbsrvr/plybkwdsrvr010.png)
 
 # main.ymlの詳細
 ### `ansible.builtin.`モジュールについて
@@ -236,6 +236,7 @@ Commercial support is available at
 * 単に`shell`や`yum`などと記載しても問題なし
 * 標準モジュールを利用していることが自明になるために記載いれています。あとは調べるとこの表記がメジャーです。
 * ansible.builtin.モジュールの説明の参考
+
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_module.html
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html#ansible-collections-ansible-builtin-dnf-module
 
@@ -250,6 +251,7 @@ changed: [54.199.169.46]
 ### yumでnginxインストールする
 /etc/yum.repos.d配下に入ったnginxのパッケージをインストールしています。
 * Amazon Linux Extrasとyumの関係の参考
+
 https://dev.classmethod.jp/articles/how-to-work-with-amazon-linux2-amazon-linux-extras/
 :::details `/etc/yum.repos.d/amzn2-extras.repo`の中身を確認
 ```bash
@@ -284,6 +286,7 @@ priority = 10
 skip_if_unavailable = 1
 report_instanceid = yes
 ```
+:::
 
 ### `backup: yes`での既存ファイルバックアップ
 * 中身に差分があれば既存ファイルをバックアップできる
@@ -295,6 +298,7 @@ ls -al | grep index
 -rw-r--r-- 1 root root  615 Oct 13 22:35 index.html.20720.2024-03-04@01:51:55~
 ```
 参考）
+
 https://qiita.com/brighton0725/items/718a28462ca12ffb1831
 
 
@@ -302,12 +306,14 @@ https://qiita.com/brighton0725/items/718a28462ca12ffb1831
 * notify: とhandlers: を入れずに、サービス有効化のブロックで単に`state:restarted`するとplaybook実行ごとにchanged対象となってしまう
 * notify: とhandlers: を入れると↑が回避できる。src:とdest:の2つのファイルの中身が違う場合にnotify:がトリガーされhandlers:が稼働する
 https://www.youtube.com/watch?v=AlWUAij4quw
+
 https://docs.ansible.com/ansible/2.9_ja/user_guide/playbooks_intro.html#handlers
 
-# 参考
+# ほかの参考
 * 大筋は以下の2つを参考にしました
-https://zenn.dev/endo/articles/f893ced432a9d2db8a5b
 https://www.youtube.com/watch?v=ZFym0_qacz0
+
+https://zenn.dev/endo/articles/f893ced432a9d2db8a5b
 
 * タスクとモジュールの説明
 > タスクが完了すべきジョブならば、モジュールはこのジョブを実際に完了するために必要なツールです。タスクは実行する必要があるアクションを定義し、モジュールはマネージドホスト上で実行されてこのアクションを達成し、終了時に戻り値を JSON 形式で収集します。
@@ -402,3 +408,7 @@ http {
 }
 ```
 :::
+
+# 感想
+* ファイルの置き換え方もわかったので、次は少し規模を大きくしていこうと思います。
+* 次はベストプラクティスに沿ってやってみようと思います。
