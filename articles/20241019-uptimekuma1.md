@@ -311,9 +311,9 @@ https://zenn.dev/kawasaki8108/articles/20241020-uptimekuma2
 - 私のハマりポイントはLinuxでの権限の仕組みやアプリケーションを443でリッスンさせて動かすというところでしたが、この機に勉強できてよかったです。
 
 # 参考記事🙇🏻
-- 非特権ユーザーが特権ポートを使えるようにする：
+- 非特権ユーザーが特権ポートを使えるようにする
 [Give Safe User Permission To Use Port 80](https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps#give-safe-user-permission-to-use-port-80)
-- 証明書関連ファイルの読み込みができない件：
+- 証明書関連ファイルの読み込みができない件
 https://stackoverflow.com/questions/48078083/lets-encrypt-ssl-couldnt-start-by-error-eacces-permission-denied-open-et
 - Let's Encryptの設定方法
 https://qiita.com/RubiLeah/items/c2252a6c42f60fc3677b
