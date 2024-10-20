@@ -1,5 +1,5 @@
 ---
-title: "サーバー外形監視ツール UptimeKuma -運用編：監視設定とKuma自体の監視-"
+title: "サーバー外形監視ツール UptimeKuma -運用編：監視設定-"
 emoji: "🧸"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [UptimeKuma,Route53,Lambda,CloudWatch,EC2]
@@ -14,6 +14,9 @@ https://zenn.dev/kawasaki8108/articles/20241019-uptimekuma1
 
 # 背景
 - UptimeKumaの管理画面で何が設定できるのかあまり参考記事がなかったので記事にしようと思いました。
+## 参考記事
+https://gihyo.jp/admin/serial/01/ubuntu-recipe/0707
+
 
 # 目的
 - Kumaでの監視設定内容とKuma自体を監視する体制を紹介する
@@ -25,4 +28,5 @@ https://zenn.dev/kawasaki8108/articles/20241019-uptimekuma1
   - Route53のヘルスチェックをKumaサーバー(EC2)に対して行う
   - Kumaサーバーがリクエストを意図した間隔で送れているかをLambdaのCloudWatchメトリクス`Invocations`の記録とアラートで検知する
 
-# 
+# 設定できること
+
