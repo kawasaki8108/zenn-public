@@ -1,5 +1,5 @@
 ---
-title: "サーバー外形監視ツール UptimeKuma をEC2 Ubuntuに導入しhttpsで接続する
+title: "サーバー外形監視ツールUptimeKumaをEC2(Ubuntu)に導入しhttpsで接続する
 emoji: "🐻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [UptimeKuma,EC2,Zabbix,LetsEncrypt,StatusCake]
