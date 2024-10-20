@@ -1,5 +1,5 @@
 ---
-title: "サーバー外形監視ツール UptimeKuma -導入編：EC2 Ubuntuでの稼働-"
+title: "サーバー外形監視ツール UptimeKuma をEC2 Ubuntuに導入しhttpsで接続する
 emoji: "🐻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [UptimeKuma,EC2,Zabbix,LetsEncrypt,StatusCake]
@@ -30,7 +30,8 @@ published: false
 - Let's EncryptのSSL証明書をKumaサーバーに導入しhttpsでKumaの管理画面へ接続する
 - 本記事のスコープ外）
   - SSL証明書を自動更新するためのcrotabやシェルスクリプトファイルの設定
-  - 導入完了後のUptimeKumaの管理画面での各種設定は、[運用編の記事](https://zenn.dev/kawasaki8108/articles/20241020-uptimekuma2)を参照ください
+  - 導入完了後のUptimeKumaの管理画面での各種設定方法
+  参考記事）https://gihyo.jp/admin/serial/01/ubuntu-recipe/0707
 
 2個目はサブ的なスコープですが、参考記事があまりなく、一番難渋したので記事にしました。。
 
@@ -300,8 +301,6 @@ uptimekumaの実行ユーザーに証明書ファイルを読み込める権限�
     ```
     :::
 6. `https://hoge.example.com`をブラウザからリクエストして管理画面が表示できれば完了
-管理画面の確認は以下の別記事を参照ください。
-https://zenn.dev/kawasaki8108/articles/20241020-uptimekuma2
 
 # 感想
 - UptimeKuma自体を稼働させるまでは非常に簡単なのでおすすめです。
